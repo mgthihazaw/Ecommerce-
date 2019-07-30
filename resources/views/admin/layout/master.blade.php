@@ -14,12 +14,12 @@
                     @yield('content')
                     </div>
         
-                    <section>
-                            <div class="container-fluid">
+                    <section >
+                            <div class="container-fluid ">
                             <div class="row">
                             <div class="col-md-12">
                             <div class="copyright">
-                            <p>Copyright © 2018 Colorlib. All rights reserved.</p>
+                            <p>Copyright © 2018 Ecommerce. All rights reserved.</p>
                             </div>
                             </div>
                             </div>

@@ -1,4 +1,4 @@
-<aside class="menu-sidebar2">
+<aside class="menu-sidebar2 ">
     <div class="logo bg-white">
         <a href="#">
           <img src="/admin/images/logo/image1.png" alt="">
@@ -42,9 +42,54 @@
                        
                     </ul>
                 </li>
+                <li class="has-sub">
+                        <a class="js-arrow" href="#">
+                                <i class="fab fa-product-hunt text-primary"></i></i>Products
+                            <span class="arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </span>
+                        </a>
+                        <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            <li>
+                            <a href="">
+                                    <i class="fas fa-table"></i>Product Table</a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="far fa-plus-square"></i>Create Product</a>
+                            </li>
+                           
+                        </ul>
+                    </li>
+
+                {{-- <li>
+                        <a href="{{route('setting')}}">
+                            <i class="fas fa-plus-square"></i>Products
+                        </a>
+                </li>
+                <li>
+                        <a href="{{route('setting')}}">
+                            <i class="fas fa-plus-square"></i>Currencies
+                        </a>
+                </li>
                 <li>
                     <a href="{{route('setting')}}">
-                            <i class="fas fa-cog "></i>Settings
+                        <i class="fas fa-plus-square"></i>Manufacture
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('setting')}}">
+                        <i class="fas fa-plus-square"></i>Transaction
+                    </a>
+                </li>
+                <li>
+                        <a href="{{route('setting')}}">
+                            <i class="fas fa-plus-square"></i>Orders
+                        </a>
+                </li>                 --}}
+                <li>
+                    <a href="{{route('setting')}}">
+                            <i class="fas fa-cog"></i>Settings
                     </a>
                 </li>
                 <li>
@@ -52,6 +97,7 @@
                             <i class="fas fa-sign-out-alt text-danger"></i>logout
                     </a>
                 </li>
+
                 
             </ul>
         </nav>

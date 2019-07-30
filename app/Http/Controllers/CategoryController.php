@@ -17,7 +17,10 @@ class CategoryController extends Controller
     
     public function create()
     {
-        return view('admin.categories.create');
+        //Get parent_id of Category is zero
+        $levels = Category::ofParent('0')->get();
+        // dd($levels);
+        return view('admin.categories.create')->withLevels($levels);
     }
 
     
@@ -26,6 +29,7 @@ class CategoryController extends Controller
         $category = new Category();
         $category->name = $request->name;
         $category->description = $request->description;
+        $category->parent_id = $request->parent_id;
         $category->url = $request->url;
         $category->save();
 
@@ -41,7 +45,8 @@ class CategoryController extends Controller
     
     public function edit(Category $category)
     {
-        return view('admin.categories.edit')->withCategory($category);
+        $levels = Category::ofParent('0')->where('id', '!=', $category->id)->get();
+        return view('admin.categories.edit')->withCategory($category)->withLevels($levels);
     }
 
     
@@ -50,9 +55,11 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->description = $request->description;
         $category->url = $request->url;
+        $category->parent_id = $request->parent_id;
         if($category->isClean()){
             return redirect()->back()->with('error','You need to specify any different value to update');
         }
+        $category->save();
         return redirect()->action('CategoryController@index')->with('success','Category Successfully Update');
     }
 
@@ -64,4 +71,5 @@ class CategoryController extends Controller
         return redirect()->action('CategoryController@index')->with('success','Category Successfully Delete');
 
     }
+    
 }

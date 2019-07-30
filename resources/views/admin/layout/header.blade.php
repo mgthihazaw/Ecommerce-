@@ -34,13 +34,32 @@
     <!-- Main CSS-->
     <link href="/admin/css/theme.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <!--  Select2  --->
+    
     @yield('css')
 <style>
     @media only screen and (min-width: 990px) {
  .menuIcon {
     display:none;
   }
+  .darkLight{
+    background-color: #2C2E35 !important;
 }
+.infoLight{
+    background-color: #49C1E1 !important;
+
+}
+
+    .select2-selection__rendered {
+    line-height: 31px !important;
+}
+.select2-container .select2-selection--single {
+    height: 40px !important;
+}
+.select2-selection__arrow {
+    height: 34px !important;
+}
+
 </style>
 </head>
 

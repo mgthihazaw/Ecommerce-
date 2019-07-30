@@ -32,7 +32,9 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('admin/setting', 'AdminController@setting')->name('setting');
     Route::get('/admin/checkPassword','AdminController@chkPassword');
     Route::post('/admin/changePassword','AdminController@changePassword')->name('changePassword');
+
     Route::resource('/category','CategoryController');
+    Route::resource('/products','ProductController');
 });
 
 

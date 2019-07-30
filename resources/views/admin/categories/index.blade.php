@@ -19,6 +19,7 @@
                 <th>No</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>No. of Parent</th>
                 <th>status</th>
                 <th>Date</th>
                 <td></td>
@@ -27,10 +28,12 @@
                 <tbody>
                    @foreach($categories as $index => $category)
                         <tr>
-                        <td>{{ $index }}</td>
+                        <td>{{ $index+1 }}</td>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->description }}</td>
+                        <td ><p class="pl-5">{{ $category->parent_id }}</p></td>
                         <td class="process">Processed</td>
+
                         <td>{{ $category->updated_at }}</td>
                         <td>
                                 <div class="row">
@@ -62,7 +65,9 @@
 
 <script>
         $(document).ready( function () {
-        $('#categoryTable').DataTable();
+        $('#categoryTable').DataTable({
+                "paging": false
+        });
 
         $(".deleteCategory").click(function(){
                 return confirm('Are you sure to delete this category?')

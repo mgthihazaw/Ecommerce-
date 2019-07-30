@@ -10,7 +10,7 @@
                 <img src="/admin/images/icon/avatar-big-01.jpg" alt="John Doe" />
             </div>
             <h4 class="name">john doe</h4>
-            <a href="#">Sign out</a>
+            <a href="#">Admin</a>
         </div>
         
 
@@ -24,24 +24,43 @@
                         </a>
                     </li>
                     <li class="has-sub">
-                        <a class="js-arrow" href="#">
-                            <i class="fas fa-trophy text-info"></i>Categories
-                            <span class="arrow">
-                                <i class="fas fa-angle-down"></i>
-                            </span>
-                        </a>
-                        <ul class="list-unstyled navbar__sub-list js-sub-list">
-                            <li>
-                            <a href="{{ route('category.index') }}">
-                                    <i class="fas fa-table"></i>Category Table</a>
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-trophy text-info"></i>Categories
+                                <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                <a href="{{ route('category.index') }}">
+                                        <i class="fas fa-table"></i>Category Table</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('category.create') }}">
+                                        <i class="far fa-plus-square"></i>Create Category</a>
+                                </li>
+                               
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                        <i class="fab fa-product-hunt text-primary"></i></i>Products
+                                    <span class="arrow">
+                                        <i class="fas fa-angle-down"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                    <a href="">
+                                            <i class="fas fa-table"></i>Product Table</a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <i class="far fa-plus-square"></i>Create Product</a>
+                                    </li>
+                                   
+                                </ul>
                             </li>
-                            <li>
-                                <a href="{{ route('category.create') }}">
-                                    <i class="far fa-plus-square"></i>Create Category</a>
-                            </li>
-                           
-                        </ul>
-                    </li>
                     <li>
                         <a href="{{route('setting')}}">
                                 <i class="fas fa-cog "></i>Settings

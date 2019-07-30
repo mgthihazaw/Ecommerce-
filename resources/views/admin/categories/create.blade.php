@@ -18,10 +18,25 @@
                             <textarea name="description" id="description" rows="9" placeholder="eg.This is product..." class="form-control"></textarea>
                             <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
                         </div>
+
+                        <div class="form-group ">
+                          <label for="parent_id" class="control-label mb-1 ">Category Label</label>
+                          
+                              <select name="parent_id" id="parent_id" class="levelCategory  form-control ">
+                                  
+                                  <option value=" 0"> Main Category </option>
+                                  @foreach($levels as $level)
+                                    <option value="{{ $level->id}}"> {{ $level->name }} </option>
+                                  @endforeach
+                                </select>
+                          
+                        </div>
+
                         <div class="form-group">
                           <label for="url" class="control-label mb-1">URL</label>
                           <input id="url" name="url" type="text" class="form-control" aria-required="true" aria-invalid="false" placeholder="eg.product">
-                      </div>
+                        </div>
+
                         
                         <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                         <i class="fa fa-save fa-lg"></i>&nbsp;
@@ -40,6 +55,8 @@
 <script>
    $(document).ready(function() {
        
+    
+    $('.levelCategory').select2();
 
         
 
@@ -56,6 +73,7 @@
             required: true,
             
           },
+          
           url: {
             required: true,
             

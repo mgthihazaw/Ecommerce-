@@ -4,7 +4,7 @@
                 <div class="header-wrap2">
                     <div class="logo d-block d-lg-none">
                         <a href="#">
-                            <h3>Microstack</h3>
+                            <h3>Ecommerce</h3>
                         </a>
                     </div>
                     <div class="header-button2">
