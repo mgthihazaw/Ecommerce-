@@ -70,10 +70,9 @@
 
             <div class="modal fade" id="scrollmodal" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" style="display: none;" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
                         
                         </div>
-                        </div>
+                       
                         </div>
                 <!--------------------------END Modal--------------------------->
 
@@ -102,13 +101,13 @@
 
     $('.productModal').on("click", function () {
     let data = $(this).data('data');
-    $('#scrollmodal .modal-content').html(`
+    $('#scrollmodal .modal-dialog ').html(`
 
-    <div class="col-md-12">
+    
 
 
 
-                <div class="row jumbotron" >
+  <div class="row jumbotron" >
                 <div class="col-6">
                    <a  class=" image" >
                         <img class="rounded mx-auto d-block " src="/images/backend/products/small/${data.image}" alt="">
@@ -125,7 +124,7 @@
                  </div>
                 </div>
 
-</div>
+
 </div>
 
 
