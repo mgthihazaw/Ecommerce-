@@ -20,7 +20,7 @@
                    
                     <li>
                         <a href="{{ route('dashboard') }}">
-                                <i class="fas fa-tachometer-alt text-success"></i>Dashboard
+                            <i class="fas fa-tachometer-alt text-success"></i>Dashboard
                         </a>
                     </li>
                     <li class="has-sub">
@@ -51,11 +51,11 @@
                                 </a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                    <a href="">
+                                    <a href="{{ route('products.index') }}">
                                             <i class="fas fa-table"></i>Product Table</a>
                                     </li>
                                     <li>
-                                        <a href="">
+                                        <a href="{{ route('products.create') }}">
                                             <i class="far fa-plus-square"></i>Create Product</a>
                                     </li>
                                    

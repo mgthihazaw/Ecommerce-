@@ -51,11 +51,11 @@
                         </a>
                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                             <li>
-                            <a href="">
+                            <a href="{{ route('products.index') }}">
                                     <i class="fas fa-table"></i>Product Table</a>
                             </li>
                             <li>
-                                <a href="">
+                                <a href="{{ route('products.create') }}">
                                     <i class="far fa-plus-square"></i>Create Product</a>
                             </li>
                            

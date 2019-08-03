@@ -27,6 +27,7 @@
 <script src="/admin/js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="/js/zoom-master/jquery.zoom.min.js"></script>
 
 
 @yield('script')
