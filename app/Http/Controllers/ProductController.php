@@ -106,7 +106,7 @@ class ProductController extends Controller
 
             }
         }
-        return view('admin.products.edit')->withProduct($product)->withCategoriesDropdown($categories_dropdown);;
+        return view('admin.products.edit')->withProduct($product)->withCategoriesDropdown($categories_dropdown);
     }
 
     public function update(Request $request, Product $product)
@@ -114,9 +114,18 @@ class ProductController extends Controller
         
         if ($request->hasFile('image')) {
             // $file_path = app_path().'/images/news/'.$news->photo;
-            unlink(public_path('images/backend/products/large/'.$product->image));
-            unlink(public_path('images/backend/products/medium/'.$product->image));
-            unlink(public_path('images/backend/products/small/'.$product->image));
+            if(file_exists(public_path('images/backend/products/large/'.$product->image))){
+                unlink(public_path('images/backend/products/large/'.$product->image));
+            }
+            if(file_exists(public_path('images/backend/products/medium/'.$product->image))){
+                unlink(public_path('images/backend/products/medium/'.$product->image));
+            }
+            if(file_exists(public_path('images/backend/products/small/'.$product->image))){
+                unlink(public_path('images/backend/products/small/'.$product->image)); 
+            }
+            
+           
+           
             $image_tmp = Input::file('image');
             if ($image_tmp->isValid()) {
                 $extension = $image_tmp->getClientOriginalExtension();
@@ -155,6 +164,15 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        if(file_exists(public_path('images/backend/products/large/'.$product->image))){
+            unlink(public_path('images/backend/products/large/'.$product->image));
+        }
+        if(file_exists(public_path('images/backend/products/medium/'.$product->image))){
+            unlink(public_path('images/backend/products/medium/'.$product->image));
+        }
+        if(file_exists(public_path('images/backend/products/small/'.$product->image))){
+            unlink(public_path('images/backend/products/small/'.$product->image)); 
+        }
         $product->delete();
         return redirect()->action('ProductController@index')->with('success', 'Product Successfully Delete');
     }

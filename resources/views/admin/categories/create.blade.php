@@ -37,6 +37,14 @@
                           <input id="url" name="url" type="text" class="form-control" aria-required="true" aria-invalid="false" placeholder="eg.product">
                         </div>
 
+                        <div class="form-group">
+                          &nbsp;&nbsp; &nbsp;&nbsp;
+                          <label for="status" class="form-check-label ">
+                           <input type="checkbox" id="status" name="status" value="option3" class="form-check-input">Enabled
+                             </label>
+                            
+                        </div>
+
                         
                         <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                         <i class="fa fa-save fa-lg"></i>&nbsp;

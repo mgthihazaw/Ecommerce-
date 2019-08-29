@@ -10,7 +10,7 @@
                     @include('admin.layout.nav')
                     @include('admin.layout.rightsidebar')
                     <div class="content mt-5 pt-5 mx-5">
-                            @include('admin.messages.message')
+                            
                     @yield('content')
                     </div>
         
@@ -30,5 +30,6 @@
                 </div>
         
         </div>
+           
            
             @include('admin.layout.footer')

@@ -32,7 +32,13 @@
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->description }}</td>
                         <td ><p class="pl-5">{{ $category->parent_id }}</p></td>
-                        <td class="process">Processed</td>
+                        <td >
+                                @if($category->status)
+                                <span class='text-success'>Enabled</span>  
+                                @else
+                                <span class='text-danger'>Disabled</span>
+                                @endif
+                        </td>
 
                         <td>{{ $category->updated_at }}</td>
                         <td>

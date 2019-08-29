@@ -31,6 +31,12 @@ class CategoryController extends Controller
         $category->description = $request->description;
         $category->parent_id = $request->parent_id;
         $category->url = $request->url;
+        if($request->status){
+            $category->status = 1;
+        }else{
+            $category->status = 0;
+        }
+        
         $category->save();
 
         return redirect()->action('CategoryController@index')->with('success','Category Successfully Create');
@@ -56,6 +62,11 @@ class CategoryController extends Controller
         $category->description = $request->description;
         $category->url = $request->url;
         $category->parent_id = $request->parent_id;
+        if($request->status){
+            $category->status = 1;
+        }else{
+            $category->status = 0;
+        }
         if($category->isClean()){
             return redirect()->back()->with('error','You need to specify any different value to update');
         }

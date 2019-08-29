@@ -31,6 +31,7 @@
                 <tbody>
                     @foreach($products as $key => $product)
                     <tr>
+                            
                         <td>{{ $key+1}}</td>
                         <td>{{ $product->product_name }}</td>
                         <td>{{ $product->description }}</td>
@@ -42,7 +43,10 @@
                         <td>{{ $product->updated_at }}</td>
                         <td>
                             <div class="row">
-                                        
+                                        <a href="{{ route('products.productAttributes.store',$product->id)}}" class="btn">
+                                                        <i class="fas fa-upload"></i>
+                                                     </a>
+                                             
                             <button class="btn  mb-1 productModal" data-toggle="modal" data-target="#scrollmodal" data-data="{{$product}}" >
                                    <i class="fa fa-eye text-dark"></i>
                               </button>
@@ -74,7 +78,7 @@
                         </div>
                        
                         </div>
-                <!--------------------------END Modal--------------------------->
+            <!--------------------------END Modal--------------------------->
 
             
 </div>
@@ -84,7 +88,11 @@
 @section('script')
 
 <script>
+        
         $(document).ready( function () {
+
+                
+
         $('#productTable').DataTable({
                 "paging": false
         });

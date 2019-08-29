@@ -35,6 +35,8 @@
     <link href="/admin/css/theme.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <!--  Select2  --->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     
     @yield('css')
 <style>
