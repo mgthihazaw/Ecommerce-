@@ -43,23 +43,26 @@
                         <td>{{ $product->updated_at }}</td>
                         <td>
                             <div class="row">
-                                        <a href="{{ route('products.productAttributes.store',$product->id)}}" class="btn">
-                                                        <i class="fas fa-upload"></i>
-                                                     </a>
+                                <a href="{{ route('products.productAttributes.index',$product->id)}}" class="btn">
+                                   <i class="fas fa-upload"></i>
+                                </a>
+                                <a href="{{ route('products.productImages.create',$product->id)}}" class="btn ">
+                                        <i class="far fa-file-image text-success"></i>
+                                </a>
                                              
-                            <button class="btn  mb-1 productModal" data-toggle="modal" data-target="#scrollmodal" data-data="{{$product}}" >
+                                <button class="btn  mb-1 productModal" data-toggle="modal" data-target="#scrollmodal" data-data="{{$product}}" >
                                    <i class="fa fa-eye text-dark"></i>
-                              </button>
-                              <a href="{{ route('products.edit',$product->id)}}" class="btn">
-                                 <i class="fas fa-edit text-warning"></i>
-                              </a>
-                              <form class="deleteProduct" action="{{ route('products.destroy',$product->id)}}" method="POST">
-                                     <input type="hidden" name="_method" value="DELETE">
-                                    {{ csrf_field() }}
-                                    <button type="submit" class="btn " id="deleteProduct">
-                                       <i class="fas fa-trash text-danger"></i>
-                                    </button>
-                              </form>
+                                </button>
+                                <a href="{{ route('products.edit',$product->id)}}" class="btn">
+                                  <i class="fas fa-edit text-warning"></i>
+                                </a>
+                                <form class="deleteProduct" action="{{ route('products.destroy',$product->id)}}" method="POST">
+                                 <input type="hidden" name="_method" value="DELETE">
+                                  {{ csrf_field() }}
+                                  <button type="submit" class="btn " id="deleteProduct">
+                                    <i class="fas fa-trash text-danger"></i>
+                                   </button>
+                               </form>
                               
                             </div>
                     </td>

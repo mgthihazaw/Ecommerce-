@@ -44,6 +44,14 @@
                             <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
                         </div>
 
+                        <div class="form-group has-success">
+                          <label for="care" class="control-label mb-1">Material & Care</label>
+                          <textarea name="care" id="care" rows="9" placeholder="eg.This is product..." class="form-control">
+                            {{ $product->care }}
+                          </textarea>
+                          <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                      </div>
+
                         <div class="form-group">
                                 <label for="image" class="control-label mb-1 btn btn-outline-primary">Choose Image</label>
                               <input type="file" id="image"  name="image" class="form-control-file " value="/images/backend/products/medium/{{ $product->image }}" style="display:none;"/>

@@ -13,7 +13,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::get();
+        $products = Product::orderBy('id','DESC')->get();
         return view('admin.products.index')->withProducts($products);
 
     }
@@ -66,6 +66,7 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->product_name = $request->product_name;
         $product->description = $request->description;
+        $product->care = $request->care;
         $product->product_code = $request->product_code;
         $product->product_color = $request->product_color;
         $product->price = $request->price;
@@ -153,6 +154,7 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->product_name = $request->product_name;
         $product->description = $request->description;
+        $product->care = $request->care;
         $product->product_code = $request->product_code;
         $product->product_color = $request->product_color;
         $product->price = $request->price;

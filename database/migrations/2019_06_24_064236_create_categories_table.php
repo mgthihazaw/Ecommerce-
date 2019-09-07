@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->integer('parent_id')->default('0');
             $table->string('name');
             $table->text('description');
+            $table->text('care');
             $table->string('url');
             $table->tinyInteger('status')->default(0);
             $table->rememberToken();

@@ -10,7 +10,7 @@ use App\ProductAttribute;
 class IndexController extends Controller
 {
     public function index(){
-        $products = Product::all();
+        $products = Product::orderBy('id','DESC')->get();
         $categories = Category::with('categories')->ofParent('0')->get();
         
         return view('user.home')->withProducts($products)->withCategories($categories);
@@ -38,7 +38,7 @@ class IndexController extends Controller
         }
         
         
-        $products =Product::whereIn('category_id',$catArray)->get();
+        $products =Product::whereIn('category_id',$catArray)->orderBy('id','DESC')->get();
 
         return view('user.products.listen')->withProducts($products)
                                            ->withCategories($categories)

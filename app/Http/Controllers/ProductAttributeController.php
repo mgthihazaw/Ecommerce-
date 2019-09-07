@@ -35,6 +35,16 @@ class ProductAttributeController extends Controller
         DB::beginTransaction();
        try{
         foreach($request->size as $key => $value){
+
+            //Check Duplicate SKU
+            $countSKU =ProductAttribute::where('sku',$request['sku'][$key])->count();
+            $countProductID =$product->product_attributes()->where('size',$request['size'][$key])->count();
+            if($countSKU > 0){
+                return redirect()->back()->with('error','SKU is Already exist');
+            }
+            if($countProductID > 0){
+                return redirect()->back()->with('error','Your product Size is Already exits');
+            }
             $product->product_attributes()->create([
                  'sku' => $request['sku'][$key],
                  'size' => $request['size'][$key],
