@@ -1,5 +1,24 @@
 @extends('user.layout.master')
 
+@section('style')
+<style>
+    /* .easyzoom {
+    float: left;
+} */
+.easyzoom img {
+    display: block;
+}
+
+
+/* Shrink wrap strategy 2 */
+.easyzoom {
+    display: inline-block;
+}
+.easyzoom img {
+    vertical-align: bottom;
+}
+</style>
+@endsection
 @section('content')
 <section>
     <div class="container">
@@ -150,22 +169,22 @@
             <div class="col-sm-9 padding-right">
                 <div class="product-details"><!--product-details-->
                     <div class="col-sm-5">
-                        <div class="view-product">
-                            
+                        <div class=" easyzoom easyzoom--overlay easyzoom--with-thumbnails ">
+                            <a href="/images/backend/products/medium/{{ $productDetails->image }}" class="mainLink">
                             <img src="/images/backend/products/small/{{ $productDetails->image }}" alt="image" class="imgProduct " id="mainImage" />
-                            
+                            </a>
                         </div>
                         <div id="similar-product" class="carousel slide" data-ride="carousel">
                             
                               <!-- Wrapper for slides -->
                                 <div class="carousel-inner">
-                                    <div class="item active">
+                                    <div class="item active thumbnails">
                                         @foreach($productDetails->product_images as $productImage)
-                                          <a class="changeImage" ></><img src="/images/backend/products/small/{{ $productImage->image }}" alt="" style="width : 60px;" id="changeImage" class="changeImage"></a>
+                                          <a class="changeImage"><img src="/images/backend/products/small/{{ $productImage->image }}" alt="" style="width : 60px;" id="changeImage" class="changeImage"></a>
                                         @endforeach
                                       
                                     </div>
-                                    <div class="item">
+                                    {{-- <div class="item">
                                             @foreach($productDetails->product_images as $productImage)
                                             <a class="changeImage"><img src="/images/backend/products/small/{{ $productImage->image }}" alt="" style="width : 60px;" id="changeImage" class="changeImage"></a>
                                            @endforeach
@@ -174,7 +193,7 @@
                                             @foreach($productDetails->product_images as $productImage)
                                             <a class="changeImage"><img src="/images/backend/products/small/{{ $productImage->image }}" alt="" style="width : 60px;" id="changeImage" class="changeImage"></a>
                                           @endforeach
-                                    </div>
+                                    </div> --}}
                                     
                                 </div>
 
@@ -186,7 +205,7 @@
                                 <i class="fa fa-angle-right"></i>
                               </a>
                         </div>
-
+ 
                     </div>
                     <div class="col-sm-7">
                         <div class="product-information"><!--/product-information-->
@@ -378,21 +397,30 @@
 @section('script')
 <script>
    $(document).ready( function () {
+
+    var $easyzoom = $('.easyzoom').easyZoom();
+
+		// Setup thumbnails example
+		var api1 = $easyzoom.filter('.easyzoom--with-thumbnails').data('easyZoom');
+
+		$('.thumbnails').on('click', 'a', function(e) {
+			var $this = $(this);
+
+			e.preventDefault();
+
+			// Use EasyZoom's `swap` method
+			api1.swap($this.data('standard'), $this.attr('href'));
+		});
+
+
+
+     
+
+
     $('#size').on('change', function() {
         let data =JSON.parse(this.value)
         // console.log(data.price)
         $('#price').text(data.price)
-
-    
-
-   
-
-
-
-
-
-
-
 
 
         // $.ajaxSetup({
@@ -424,9 +452,14 @@ $('a img#changeImage').on('click',function(){
          var image = $(this).attr('src')
          $(this).attr('src',$('#mainImage').attr('src'))
          $('#mainImage').attr('src',image)
-         $(this).attr('src')
+         let link =$('#mainImage').attr('src').replace('small','medium')
+         $('.mainLink').attr('href',link)
+        //  $(this).attr('src')
+
+         
+         
      })   
-      
+    
   });
 </script>
 

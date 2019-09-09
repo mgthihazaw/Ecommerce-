@@ -22,6 +22,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/user/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/user/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/user/images/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="stylesheet" href="/easyZoom/css/easyzoom.css">
     @yield('style')
 </head><!--/head-->
 
@@ -42,6 +43,7 @@
 	<script src="/user/js/price-range.js"></script>
     <script src="/user/js/jquery.prettyPhoto.js"></script>
     <script src="/user/js/main.js"></script>
+    <script src="/easyZoom/js/easyzoom.js"></script>
     @yield('script')
 </body>
 </html>
