@@ -63,6 +63,12 @@ class ProductController extends Controller
 
         }
 
+        if(empty($request->status)){
+            $product->status = 0;
+        }else{
+            $product->status = 1;
+        }
+
         $product->category_id = $request->category_id;
         $product->product_name = $request->product_name;
         $product->description = $request->description;
@@ -149,6 +155,12 @@ class ProductController extends Controller
                 $product->image = $imageName;
             }
 
+        }
+
+        if(empty($request->status)){
+            $product->status = 0;
+        }else{
+            $product->status = 1;
         }
 
         $product->category_id = $request->category_id;

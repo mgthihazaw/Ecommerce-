@@ -58,6 +58,8 @@
                         
                  </div>
                 <div class="table-responsive">
+
+
                   <table class="table table-top-campaign">
                     <tbody>
                        <tr>
@@ -70,14 +72,23 @@
                        </tr>
                        @foreach($attributes as $key => $attribute)
                         <tr>
-                            <td>&nbsp;&nbsp;{{ $key+1 }}</td>
-                            <td>&nbsp;&nbsp;{{ $attribute->sku }}</td>
-                            <td>&nbsp;&nbsp;{{ $attribute->size }}</td>
-                            <td>&nbsp;&nbsp;{{ $attribute->price }}</td>
-                            <td>&nbsp;&nbsp;{{ $attribute->stock }}</td>
-                            <td>&nbsp;&nbsp;
+                            <form method="post" action="{{ route('products.productAttributes.update',[$product->id,$attribute->id]) }}">
+                                @csrf
+                                @method('PUT')
+                                <td>&nbsp;&nbsp;{{ $key+1 }}</td>
+                                <td>&nbsp;&nbsp;{{ $attribute->sku }}</td>
+                                <td>&nbsp;&nbsp;{{ $attribute->size }}</td>
+                                <td>
+                                    <input type="text" value="{{ $attribute->price }}" name="price" autofocus>
+                                </td>
+                                <td><input type="text" value="{{ $attribute->stock }}" name="stock"></td>
+                                <td>
                                 <div class="row">
-                                        
+                                    <button type="submit" class="btn">
+                                            <i class="fas fa-save text-warning"></i>
+                                            
+                                    </button>
+                            </form>
                                              <form class="deleteProductAttribute" action="{{route('products.productAttributes.destroy',[$product->id,$attribute->id])}}" method="POST">
                                                     <input type="hidden" name="_method" value="DELETE">
                                                    {{ csrf_field() }}

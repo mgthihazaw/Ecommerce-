@@ -70,6 +70,13 @@
                           </div>
                           
                         </div>
+                        <div class="form-group">
+                            &nbsp;&nbsp; &nbsp;&nbsp;
+                            <label for="status" class="form-check-label ">
+                             <input type="checkbox" id="status" name="status"  class="form-check-input" checked>Enabled
+                               </label>
+                              
+                          </div>
 
                         
 

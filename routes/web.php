@@ -13,7 +13,7 @@
 
 
 
-
+//ADMIN Route
 
 Route::get('/admin/register', function () {
     
@@ -22,8 +22,6 @@ Route::get('/admin/register', function () {
 
 Route::match(['get','post'],'/admin/login','AdminController@login')->name('login');
 Route::get('/logout', 'AdminController@logout')->name('logout');
-
-
 Route::group(['middleware'=>['auth']],function(){
     Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
     // Route::get('/', function () { return view('admin.home'); });

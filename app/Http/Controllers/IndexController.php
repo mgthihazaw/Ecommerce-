@@ -10,7 +10,7 @@ use App\ProductAttribute;
 class IndexController extends Controller
 {
     public function index(){
-        $products = Product::orderBy('id','DESC')->get();
+        $products = Product::orderBy('id','DESC')->where('status',1)->get();
         $categories = Category::with('categories')->ofParent('0')->get();
         
         return view('user.home')->withProducts($products)->withCategories($categories);
@@ -38,7 +38,7 @@ class IndexController extends Controller
         }
         
         
-        $products =Product::whereIn('category_id',$catArray)->orderBy('id','DESC')->get();
+        $products =Product::whereIn('category_id',$catArray)->where('status',1)->orderBy('id','DESC')->get();
 
         return view('user.products.listen')->withProducts($products)
                                            ->withCategories($categories)
@@ -46,17 +46,22 @@ class IndexController extends Controller
     
     }
     public function product($id = null){
-     
-      $productDetails =Product::with('product_attributes')->where('id',$id)->first();
+
+    $productDetails = Product::with('product_attributes')->where('id', $id)->where('status', 1)->firstOrFail();
       
+      $relatedProducts = Product::where('id',"!=",$id)->where('category_id',$productDetails->category_id)->get();
+      $relatedProducts = array_chunk($relatedProducts->toArray(), 3);
+      // dd($relatedProducts);
      
-      
+       $total_stock = ProductAttribute::where('product_id',$id)->sum('stock');
 
       $categories = Category::with('categories')->ofParent('0')->get();
       
       return view('user.products.detail')
                     ->withProductDetails($productDetails)
-                    ->withCategories($categories);
+                    ->withCategories($categories)
+                    ->withTotalStock($total_stock)
+                    ->withRelatedProducts($relatedProducts);
 
       
     }

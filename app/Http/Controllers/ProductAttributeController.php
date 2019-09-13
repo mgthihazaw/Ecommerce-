@@ -73,9 +73,11 @@ class ProductAttributeController extends Controller
     }
 
    
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product,ProductAttribute $productAttribute)
     {
-        //
+        $productAttribute->update($request->all());
+
+        return redirect()->back()->with('success','Successfully Updated');
     }
 
     
