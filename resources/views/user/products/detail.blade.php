@@ -22,6 +22,9 @@
 @section('content')
 <section>
     <div class="container">
+    
+    
+
         <div class="row">
             {{-- <div class="col-sm-3">
                 <div class="left-sidebar">
@@ -167,6 +170,7 @@
             </div>
             
             <div class="col-sm-9 padding-right">
+           
                 <div class="product-details"><!--product-details-->
                     <div class="col-sm-5">
                         <div class=" easyzoom easyzoom--overlay easyzoom--with-thumbnails ">
@@ -208,46 +212,59 @@
  
                     </div>
                     <div class="col-sm-7">
-                        <div class="product-information"><!--/product-information-->
-                            
-                            <img src="/user/images/product-details/new.jpg" class="newarrival" alt="" />
-                            <h2>{{ $productDetails->product_name }}</h2>
-                            <p>Code : {{ $productDetails->product_code }}</p>
-                            <p>
-                                <select name="size" id="size" style="width : 150px;">
-                                    <option value="{{$productDetails}}">Select Size</option>
-                                    @foreach($productDetails->product_attributes as $attribute)
-                                      <option value="{{ $attribute }}">{{ $attribute->size }}</option>
-                                    @endforeach
-                                </select>
-                            </p>
-                            <img src="/user/images/product-details/rating.png" alt="" />
-                            <br>
-                            <span>
-                                <span id="price">{{ $productDetails->price }}</span>
-                                <label>Quantity:</label>
-                            <input type="number" value="{{ $totalStock ? '1' :'0' }}" min="0" max="{{ $totalStock }}"/>
-                                @if($totalStock > 0)
-                                <button type="button" class="btn btn-fefault cart" id="card-button">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    Add to cart
-                                </button>
-                                @endif
-                            </span>
-                            <p><b>Availability:</b>
-                                <span id="availability">
-                                @if($totalStock > 0)
-                                    In Stock
-                                @else
-                                    Out Of Stock 
-                                @endif
-                                </span>
+                        <form name="addtocartForm" id="addtocartForm" action="{{ url('add-cart') }}" method="post">
+                            @csrf
+                             <input type="hidden" name="product_id" value="{{ $productDetails->id }}"> 
+                             <input type="hidden" name="product_name" value="{{ $productDetails->product_name }}"> 
+                             <input type="hidden" name="product_code" value="{{ $productDetails->product_code }}">
+                             <input type="hidden" name="product_color" value="{{ $productDetails->product_color}}">
+                             <input type="hidden" id="price" name="price" value="{{ $productDetails->price }}">
+                             <input type="hidden" name="size" id="size">
+                             
 
-                            </p>
-                            <p><b>Condition:</b> New</p>
-                            <p><b>Brand:</b> E-SHOP</p>
-                            <a href=""><img src="/user/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
-                        </div><!--/product-information-->
+
+
+                            <div class="product-information"><!--/product-information-->
+                                
+                                <img src="/user/images/product-details/new.jpg" class="newarrival" alt="" />
+                                <h2>{{ $productDetails->product_name }}</h2>
+                                <p>Code : {{ $productDetails->product_code }}</p>
+                                <p>
+                                    <select  id="attr" style="width : 150px;">
+                                        <option value="{{$productDetails}}">Select Size</option>
+                                        @foreach($productDetails->product_attributes as $attribute)
+                                        <option value="{{ $attribute }}">{{ $attribute->size }}</option>
+                                        @endforeach
+                                    </select>
+                                </p>
+                                <img src="/user/images/product-details/rating.png" alt="" />
+                                <br>
+                                <span>
+                                    <span id="price">{{ $productDetails->price }}</span>
+                                    <label>Quantity:</label>
+                                <input type="number" name="quantity" value="{{ $totalStock ? '1' :'0' }}" min="0" max="{{ $totalStock }}"/>
+                                    @if($totalStock > 0)
+                                    <button type="submit" class="btn btn-fefault cart" id="card-button">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        Add to cart
+                                    </button>
+                                    @endif
+                                </span>
+                                <p><b>Availability:</b>
+                                    <span id="availability">
+                                    @if($totalStock > 0)
+                                        In Stock
+                                    @else
+                                        Out Of Stock 
+                                    @endif
+                                    </span>
+
+                                </p>
+                                <p><b>Condition:</b> New</p>
+                                <p><b>Brand:</b> E-SHOP</p>
+                                <a href=""><img src="/user/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+                            </div><!--/product-information-->
+                        </form>
                     </div>
                 </div><!--/product-details-->
                 
@@ -282,29 +299,7 @@
                             </div>
                         </div>
                         
-                        {{-- <div class="tab-pane fade active in" id="reviews" >
-                            <div class="col-sm-12">
-                                <ul>
-                                    <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-                                    <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-                                    <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-                                </ul>
-                            <p>{{ $productDetails->care }}</p>
-                                <p><b>Write Your Review</b></p>
-                                
-                                <form action="#">
-                                    <span>
-                                        <input type="text" placeholder="Your Name"/>
-                                        <input type="email" placeholder="Email Address"/>
-                                    </span>
-                                    <textarea name="" ></textarea>
-                                    <b>Rating: </b> <img src="/user/images/product-details/rating.png" alt="" />
-                                    <button type="button" class="btn btn-default pull-right">
-                                        Submit
-                                    </button>
-                                </form>
-                            </div>
-                        </div> --}}
+                      
                         
                     </div>
                 </div><!--/category-tab-->
@@ -375,11 +370,12 @@
      
 
 
-    $('#size').on('change', function() {
+    $('#attr').on('change', function() {
         let data =JSON.parse(this.value)
         // console.log(data.price)
-        $('#price').text(data.price)
-
+        $('span#price').text(data.price)
+        $('input#price').val(data.price)
+        $('input#size').val(data.size)
         if(data.stock < 1){
             $('#card-button').hide();
             $("#availability").text("Out Of Stock")

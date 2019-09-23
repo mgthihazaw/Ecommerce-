@@ -13,10 +13,17 @@ toastr.error("{{$message}}")
 
 
 @if ($message = Session::get('warning'))
-alert("message")
+
 toastr.warning("{{$message}}")
 @endif
 
+@if (count($errors) > 0)
+         
+               @foreach ($errors->all() as $error)
+			   toastr.error("{{$error}}")
+               @endforeach
+            
+      @endif
 </script>
 
 

@@ -41,4 +41,8 @@ Route::get('/product/{url}','IndexController@products')->name('category.products
 Route::get('/product-details/{id}','IndexController@product')->name('productDetails');
 Route::get('/product-size/{id}','IndexController@getSizeFromProduct');
 
+Route::get('/add-cart','IndexController@showCart');
+Route::post('/add-cart','IndexController@addToCart');
+
+
 

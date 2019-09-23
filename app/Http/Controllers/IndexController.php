@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
@@ -67,6 +68,47 @@ class IndexController extends Controller
     }
    public function getSizeFromProduct($id){
     //  $product_attribute = ProductAttribute::where('id',$id)->first();
+   }
+
+   public function addToCart(Request $request)
+   {
+     
+     $this->validate($request,[
+      'product_id' =>  'required' ,
+      'product_name' =>  'required' ,
+      'product_code' =>  'required' ,
+      'product_color' => 'required' ,
+      'size' =>  'required|string' ,
+      'price' =>  'required' ,
+      'quantity' =>  'required|min:1' ,
+     ]);
+    
+     if(empty($request->email)){
+      $request->email ="";
+     }
+     
+      $request->session_id = str_random(40);
+    
+     
+     Cart::updateOrCreate([
+      'product_id' => $request->product_id ,
+      'product_name' => $request->product_name ,
+      'product_code' => $request->product_code ,
+      'product_color' => $request->product_color ,
+      'user_email' => $request->email ,
+      'size' => $request->size ,
+     ],[
+      'price' => $request->price,
+      'quantity' => $request->quantity ,
+      'session_id' => $request->session_id ,
+     ]);
+
+     return redirect()->back()->with('success','Cart is successfully saved');
+   }
+
+   public function showCart(){
+     $carts = Cart::all();
+     return view('user.products.cart')->withCarts($carts);
    }
 }
 
