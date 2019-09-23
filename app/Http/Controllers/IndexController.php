@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 use App\ProductAttribute;
+use Illuminate\Support\Facades\Session;
 
 class IndexController extends Controller
 {
@@ -86,9 +87,12 @@ class IndexController extends Controller
      if(empty($request->email)){
       $request->email ="";
      }
-     
-      $request->session_id = str_random(40);
-    
+     $session_id = Session::get('session_id');
+     if(empty($session_id)){
+      $session_id = str_random(40);
+      Session::put('session_id',$session_id );
+     }
+      
      
      Cart::updateOrCreate([
       'product_id' => $request->product_id ,
@@ -100,14 +104,16 @@ class IndexController extends Controller
      ],[
       'price' => $request->price,
       'quantity' => $request->quantity ,
-      'session_id' => $request->session_id ,
+      'session_id' => $session_id ,
      ]);
 
      return redirect()->back()->with('success','Cart is successfully saved');
    }
 
    public function showCart(){
-     $carts = Cart::all();
+     
+     $session_id = Session::get('session_id');
+     $carts = Cart::where(['session_id' => $session_id])->get();
      return view('user.products.cart')->withCarts($carts);
    }
 }
