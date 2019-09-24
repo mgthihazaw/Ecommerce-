@@ -43,6 +43,9 @@ Route::get('/product-size/{id}','IndexController@getSizeFromProduct');
 
 Route::get('/add-cart','IndexController@showCart');
 Route::post('/add-cart','IndexController@addToCart');
+Route::get('/remove-cart/{id}','IndexController@removeCart');
 
+Route::get('/increase-item-cart/{id}','IndexController@increaseCart');
+Route::get('/decrease-item-cart/{id}','IndexController@decreaseCart');
 
 
