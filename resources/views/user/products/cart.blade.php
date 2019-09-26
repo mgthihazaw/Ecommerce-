@@ -177,9 +177,8 @@
 					jq.parent().parent().next('.cart_total').find('p').text(total_price);
 					toastr.success(data.message);
 				},
-				error: function(data) {
-					console.log(data)
-					toastr.error("Something want wrong");
+				error: function(error) {
+					toastr.error(error.responseJSON.message);
 				}
 			});
 

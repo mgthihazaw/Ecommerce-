@@ -17,6 +17,14 @@ alert("message")
 toastr.warning("{{$message}}")
 @endif
 
+@if (count($errors) > 0)
+         
+               @foreach ($errors->all() as $error)
+			   toastr.warning("{{$error}}")
+               @endforeach
+            
+      @endif
+
 </script>
 
 

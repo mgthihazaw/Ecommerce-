@@ -33,6 +33,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::resource('/products','ProductController');
     Route::resource('products.productImages','ProductImageController');
     Route::resource('products.productAttributes','ProductAttributeController');
+    Route::resource('/coupons','CouponController');
 });
 
 //User Route

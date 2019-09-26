@@ -129,10 +129,21 @@ class IndexController extends Controller
   public function increaseCart($id)
   {
     
-      Cart::where('id', $id)->increment('quantity');
+      // 
 
-      return response()->json(['message' => 'item is increased'], 200);
-   
+      $cart = Cart::where('id', $id)->first();
+      // dd($cart->product_code);
+      $attribute_stock = ProductAttribute::where('sku','LIKE','AD10008%')->first();
+      
+
+      if((int)$cart->quantity < (int)$attribute_stock->stock)
+      {
+        Cart::where('id', $id)->increment('quantity');
+        return response()->json(['message' => 'Item quality is increased'], 200);
+      }
+
+      
+      return response()->json(['message' => 'Item quality is not avaiable'], 404);
     
   }
   public function decreaseCart($id)
@@ -141,10 +152,10 @@ class IndexController extends Controller
     
     if ($origin_cart->quantity > 0) {
        Cart::where('id', $id)->decrement('quantity');
-       return response()->json(['message' => 'item is decreased'], 200);
+       return response()->json(['message' => 'Item quality is decreased'], 200);
     }
 
-    return response()->json(['message' => 'item is at least 0'], 403);
+    return response()->json(['message' => 'Item quality is at least 0'], 404);
 
   }
 }
