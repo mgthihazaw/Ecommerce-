@@ -6,7 +6,9 @@ use App\Cart;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
+use App\Coupon;
 use App\ProductAttribute;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
 
 class IndexController extends Controller
@@ -158,4 +160,46 @@ class IndexController extends Controller
     return response()->json(['message' => 'Item quality is at least 0'], 404);
 
   }
+
+  public function applyCoupon(){
+    Session::forget('CouponAmount');
+    Session::forget('CouponCode');
+
+   $couponCount = Coupon::where('coupon_code',request()->coupon_code)->count();
+   if($couponCount == 0){
+     return redirect()->back()->with('error','Coupon is not valid');
+   }
+   else{
+     $coupon = Coupon::where('coupon_code',request()->coupon_code)->first();
+     // Coupon is inactive
+     if($coupon->status == 0){
+      return redirect()->back()->with('error','Coupon is not active');
+    }
+    
+    $mytime = date('Y-m-d');
+     
+    if($coupon->expiry_date < $mytime){
+      return redirect()->back()->with('error','Coupon is Expired');
+    }
+
+    $session_id = Session::get('session_id');
+    $carts = Cart::where(['session_id' => $session_id])->get();
+    $total_amount = 0;
+    foreach($carts as $cart){
+      $total_amount += $cart->price * $cart->quantity;
+    }
+    if($coupon->amount_type == "Fixed"){
+      $couponAmount = $coupon->amount;
+    }else{
+      $couponAmount = $total_amount * ($coupon->amount /100);
+    }
+
+    Session::put('CouponAmount',$couponAmount);
+    Session::put('CouponCode',request()->coupon);
+
+    return redirect()->back()->with('success','Coupon is successfully applied . You are avaiable discount now.');
+   }
+  }
 }
+
+

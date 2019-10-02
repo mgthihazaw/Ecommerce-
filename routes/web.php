@@ -48,5 +48,7 @@ Route::get('/remove-cart/{id}','IndexController@removeCart');
 
 Route::get('/increase-item-cart/{id}','IndexController@increaseCart');
 Route::get('/decrease-item-cart/{id}','IndexController@decreaseCart');
+//Apply Coupon
+Route::post('/cart/apply-coupon','IndexController@applyCoupon');
 
 

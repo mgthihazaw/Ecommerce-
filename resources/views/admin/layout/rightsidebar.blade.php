@@ -60,7 +60,26 @@
                                     </li>
                                    
                                 </ul>
-                            </li>
+                        </li>
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                <i class="fas fa-tag text-dark"></i>Coupon
+                                    <span class="arrow">
+                                        <i class="fas fa-angle-down"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                    <a href="{{ route('coupons.index') }}">
+                                            <i class="fas fa-table"></i>Coupon Table</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('coupons.create') }}">
+                                            <i class="far fa-plus-square"></i>Create Coupon</a>
+                                    </li>
+                                
+                                </ul>
+                    </li>
                     <li>
                         <a href="{{route('setting')}}">
                                 <i class="fas fa-cog "></i>Settings
