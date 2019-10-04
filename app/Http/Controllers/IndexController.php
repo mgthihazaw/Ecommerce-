@@ -75,6 +75,9 @@ class IndexController extends Controller
 
   public function addToCart(Request $request)
   {
+    Session::forget('CouponAmount');
+    Session::forget('CouponCode');
+
 
     $this->validate($request, [
       'product_id' =>  'required',
@@ -122,6 +125,9 @@ class IndexController extends Controller
 
   public function removeCart($id)
   {
+    Session::forget('CouponAmount');
+    Session::forget('CouponCode');
+
     $cartItem = Cart::find($id);
     $cartItem->delete();
 
@@ -131,7 +137,8 @@ class IndexController extends Controller
   public function increaseCart($id)
   {
     
-      // 
+    Session::forget('CouponAmount');
+    Session::forget('CouponCode');
 
       $cart = Cart::where('id', $id)->first();
       // dd($cart->product_code);
@@ -150,6 +157,8 @@ class IndexController extends Controller
   }
   public function decreaseCart($id)
   {
+    Session::forget('CouponAmount');
+    Session::forget('CouponCode');
     $origin_cart = Cart::where('id', $id)->first();
     
     if ($origin_cart->quantity > 0) {
@@ -200,6 +209,10 @@ class IndexController extends Controller
     return redirect()->back()->with('success','Coupon is successfully applied . You are avaiable discount now.');
    }
   }
+
+  // public function deleteCoupon(){
+
+  // }
 }
 
 
