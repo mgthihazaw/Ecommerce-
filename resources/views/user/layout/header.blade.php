@@ -128,23 +128,23 @@
 				<div class="col-sm-12">
 					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
 						<ol class="carousel-indicators">
-							<li data-target="#slider-carousel" data-slide-to="0" class=""></li>
-							<li data-target="#slider-carousel" data-slide-to="1" class=""></li>
-							<li data-target="#slider-carousel" data-slide-to="2" class=""></li>
+                        @foreach($banners as $key => $banner)
+							<li data-target="#slider-carousel" data-slide-to="{{$key}}" class=""></li>
+							@endforeach
 						</ol>
 						
 						<div class="carousel-inner">
-							<div class="item next left">
-								<img src="/user/images/tshirt-banner.jpg" alt="">
-							</div>
-							<div class="item">
-                            <img src="/user/images/flat-banner.jpg" alt="">
-							</div>
+
+                        
+                            
+                            @foreach($banners as $key => $banner)
+                            
+                            <div class="item <?php echo $key == 0 ? 'active' : ''; ?>">
+								<img src="/images/backend/banners/{{ $banner->image }}" alt="">
+                            </div>
+                            
 							
-							<div class="item active left">
-                            <img src="/user/images/top-banner.jpg" alt="">
-							</div>
-							
+							@endforeach
 						</div>
 						
 						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">

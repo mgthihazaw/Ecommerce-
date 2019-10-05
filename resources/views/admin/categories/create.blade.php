@@ -28,7 +28,7 @@
                                   @foreach($levels as $level)
                                     <option value="{{ $level->id}}"> {{ $level->name }} </option>
                                   @endforeach
-                                </select>
+                              </select>
                           
                         </div>
 
@@ -42,7 +42,6 @@
                           <label for="status" class="form-check-label ">
                            <input type="checkbox" id="status" name="status" value="option3" class="form-check-input">Enabled
                              </label>
-                            
                         </div>
 
                         

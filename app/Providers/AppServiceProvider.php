@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Banner;
+
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Support\Facades\View ;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer('*', function($view)
+    {
+        $banners = Banner::where('status',1)->get();
+        $view->with('banners', $banners );
+    });
     }
 }

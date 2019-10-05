@@ -109,6 +109,26 @@
                     </ul>
                 </li>
 
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                    <i class="fas fa-map text-warning"></i>Banner
+                        <span class="arrow">
+                            <i class="fas fa-angle-down"></i>
+                        </span>
+                    </a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li>
+                        <a href="{{ route('banners.index') }}">
+                                <i class="fas fa-table"></i>Banner Table</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('banners.create') }}">
+                                <i class="far fa-plus-square"></i>Create Banner</a>
+                        </li>
+                       
+                    </ul>
+                </li>
+
                 <li>
                     <a href="{{route('setting')}}">
                             <i class="fas fa-cog"></i>Settings
