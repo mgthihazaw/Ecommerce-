@@ -24,6 +24,9 @@
     <link rel="apple-touch-icon-precomposed" href="/user/images/ico/apple-touch-icon-57-precomposed.png">
     <link rel="stylesheet" href="/easyZoom/css/easyzoom.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <link href="/user/css/passtrength.css" rel="stylesheet">
+
     @yield('style')
 </head><!--/head-->
 
@@ -46,6 +49,7 @@
     <script src="/user/js/main.js"></script>
     <script src="/easyZoom/js/easyzoom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="/user/js/passtrength.js"></script>
     @include('user.messages.message')
     @yield('script')
 </body>

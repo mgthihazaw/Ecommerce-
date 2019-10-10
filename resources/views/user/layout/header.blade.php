@@ -1,11 +1,14 @@
-<?php 
+<?php
 
-  use App\Http\Controllers\Controller;
-  $mainCategories = Controller::getMainCategory();
+use App\Http\Controllers\Controller;
+
+$mainCategories = Controller::getMainCategory();
 
 ?>
-<header id="header"><!--header-->
-    <div class="header_top"><!--header_top-->
+<header id="header">
+    <!--header-->
+    <div class="header_top">
+        <!--header_top-->
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
@@ -29,9 +32,11 @@
                 </div>
             </div>
         </div>
-    </div><!--/header_top-->
-    
-    <div class="header-middle"><!--header-middle-->
+    </div>
+    <!--/header_top-->
+
+    <div class="header-middle">
+        <!--header-middle-->
         <div class="container">
             <div class="row">
                 <div class="col-sm-4">
@@ -49,7 +54,7 @@
                                 <li><a href="#">UK</a></li>
                             </ul>
                         </div>
-                        
+
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
                                 DOLLAR
@@ -69,15 +74,23 @@
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="/add-cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+                            
+                            @if(auth()->guard()->check())
+                            <li><a href="{{ url('/login-register') }}"><i class="fa fa-lock"></i> Logout</a></li>
+
+                            @else
+                            <li><a href="{{ url('/user-logout') }}"><i class="fa fa-lock"></i> Login</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </div><!--/header-middle-->
+    </div>
+    <!--/header-middle-->
 
-    <div class="header-bottom"><!--header-bottom-->
+    <div class="header-bottom">
+        <!--header-bottom-->
         <div class="container">
             <div class="row">
                 <div class="col-sm-9">
@@ -96,18 +109,18 @@
                                 <ul role="menu" class="sub-menu">
                                     @foreach($mainCategories as $mainCategory)
 
-                                <li><a href="/product/{{ $mainCategory->url }}">{{ $mainCategory->name }}</a></li>
+                                    <li><a href="/product/{{ $mainCategory->url }}">{{ $mainCategory->name }}</a></li>
 
                                     @endforeach
-                                    
+
                                 </ul>
-                            </li> 
+                            </li>
                             <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="blog.html">Blog List</a></li>
                                     <li><a href="blog-single.html">Blog Single</a></li>
                                 </ul>
-                            </li> 
+                            </li>
                             <li><a href="404.html">404</a></li>
                             <li><a href="contact-us.html">Contact</a></li>
                         </ul>
@@ -115,47 +128,50 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
-                        <input type="text" placeholder="Search"/>
+                        <input type="text" placeholder="Search" />
                     </div>
                 </div>
             </div>
         </div>
-    </div><!--/header-bottom-->
-</header><!--/header-->
-<section id="slider"><!--slider-->
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
-						<ol class="carousel-indicators">
+    </div>
+    <!--/header-bottom-->
+</header>
+<!--/header-->
+<section id="slider">
+    <!--slider-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
                         @foreach($banners as $key => $banner)
-							<li data-target="#slider-carousel" data-slide-to="{{$key}}" class=""></li>
-							@endforeach
-						</ol>
-						
-						<div class="carousel-inner">
+                        <li data-target="#slider-carousel" data-slide-to="{{$key}}" class=""></li>
+                        @endforeach
+                    </ol>
 
-                        
-                            
-                            @foreach($banners as $key => $banner)
-                            
-                            <div class="item <?php echo $key == 0 ? 'active' : ''; ?>">
-								<img src="/images/backend/banners/{{ $banner->image }}" alt="">
-                            </div>
-                            
-							
-							@endforeach
-						</div>
-						
-						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-							<i class="fa fa-angle-left"></i>
-						</a>
-						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-							<i class="fa fa-angle-right"></i>
-						</a>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	</section>
+                    <div class="carousel-inner">
+
+
+
+                        @foreach($banners as $key => $banner)
+
+                        <div class="item <?php echo $key == 0 ? 'active' : ''; ?>">
+                            <img src="/images/backend/banners/{{ $banner->image }}" alt="">
+                        </div>
+
+
+                        @endforeach
+                    </div>
+
+                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

@@ -37,10 +37,14 @@
     <!--  Select2  --->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link>
 
     
     @yield('css')
 <style>
+
+
+
     @media only screen and (min-width: 990px) {
  .menuIcon {
     display:none;
@@ -62,6 +66,7 @@
 .select2-selection__arrow {
     height: 34px !important;
 }
+
 
 </style>
 </head>

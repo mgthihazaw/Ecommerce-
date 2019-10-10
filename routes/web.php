@@ -25,6 +25,9 @@ Route::group(['middleware'=>['auth']],function(){
 });
 
 //User Route
+
+Route::match(['GET','POST'],'/login-register','UserController@register');
+
 Route::get('/','IndexController@index');
 Route::get('/product/{url}','IndexController@products')->name('category.products');
 Route::get('/product-details/{id}','IndexController@product')->name('productDetails');
