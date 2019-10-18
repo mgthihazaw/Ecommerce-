@@ -14,10 +14,11 @@
                 <div class="login-form">
                     <!--login form-->
                     <h2>Login to your account</h2>
-                    <form action="{{ url('/login-register') }}" method="post">
+                    <form action="{{ url('/user-login') }}" method="post">
                     @csrf
-                        <input type="text" placeholder="Name" />
-                        <input type="email" placeholder="Email Address" />
+                        
+                        <input type="email" placeholder="Email Address" name="email" id="email"/>
+                        <input type="password" name="password" id="password"/>
                         <span>
                             <input type="checkbox" class="checkbox">
                             Keep me signed in

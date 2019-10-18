@@ -50,6 +50,8 @@
     <script src="/easyZoom/js/easyzoom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="/user/js/passtrength.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
     @include('user.messages.message')
     @yield('script')
 </body>

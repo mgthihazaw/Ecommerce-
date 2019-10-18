@@ -15,7 +15,6 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('admin/setting', 'AdminController@setting')->name('setting');
     Route::get('/admin/checkPassword','AdminController@chkPassword');
     Route::post('/admin/changePassword','AdminController@changePassword')->name('changePassword');
-
     Route::resource('/category','CategoryController');
     Route::resource('/products','ProductController');
     Route::resource('products.productImages','ProductImageController');
@@ -25,8 +24,14 @@ Route::group(['middleware'=>['auth']],function(){
 });
 
 //User Route
+Route::group(['middleware'=> ['frontlogin']] ,function(){
+    Route::match(['GET','POST'],'/account','UserController@account');
+});
 
 Route::match(['GET','POST'],'/login-register','UserController@register');
+Route::post('/user-login','UserController@login');
+Route::get('/user-logout','UserController@logout');
+
 
 Route::get('/','IndexController@index');
 Route::get('/product/{url}','IndexController@products')->name('category.products');
