@@ -45,12 +45,13 @@
                 <div class="signup-form">
                     <!--sign up form-->
                     <h2>Update Password</h2>
-                    <form action="{{ url('/login-register') }}" method="post">
+                    <form action="{{ url('/update-user-password') }}" method="post">
                         @csrf
-                        <input type="text" placeholder="Name" name="name" />
-                        <input type="email" placeholder="Email Address" name="email" />
-                        <input type="password" placeholder="Password" name="password" id="rpassword" />
-                        <button type="submit" class="btn btn-default">Signup</button>
+                        <input type="password" placeholder="Current Password" name="password" id="currentPassword"/>
+                        <input type="password" placeholder="New Password" name="newpassword" />
+                        <input type="password" placeholder="Confirmed Password" name="password_confirmation" />
+
+                        <button type="submit" class="btn btn-default">Change</button>
                     </form>
                 </div>
                 <!--/sign up form-->
@@ -115,6 +116,31 @@
                 form.submit();
             }
         });
+
+        $("#currentPassword").mouseleave(function(){
+                let current_password = $("#currentPassword").val();
+                console.log(current_password)
+                $.ajax({
+                        type : 'get',
+                        url : '/user-checkPassword',
+                        data : {current_password :current_password},
+                        success : function(res){
+                                if($('.ckPasswork')){
+                                $('.ckPasswork').empty();
+                                }
+                                if(res == 'false'){
+                                        $('#currentPassword')
+                                        .after("<font color='red' class='ckPasswork'>Current Password is Incorrect</font>")
+                                }else if(res == "true"){
+                                        $('#currentPassword')
+                                        .after("<font color='green' class='ckPasswork'>Current Password is Correct</font>")
+                                }
+                        },
+                        error : function(err){
+                                alert(err)
+                        }
+                })
+        })
     })
 </script>
 

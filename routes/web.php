@@ -26,6 +26,9 @@ Route::group(['middleware'=>['auth']],function(){
 //User Route
 Route::group(['middleware'=> ['frontlogin']] ,function(){
     Route::match(['GET','POST'],'/account','UserController@account');
+    Route::post('/update-user-password','UserController@updatepassword');
+    Route::get('/user-checkPassword','UserController@checkpassword');
+    Route::get('/checkout','CheckoutController@checkout');
 });
 
 Route::match(['GET','POST'],'/login-register','UserController@register');
@@ -46,5 +49,7 @@ Route::get('/increase-item-cart/{id}','IndexController@increaseCart');
 Route::get('/decrease-item-cart/{id}','IndexController@decreaseCart');
 //Apply Coupon
 Route::post('/cart/apply-coupon','IndexController@applyCoupon');
+
+
 
 

@@ -74,6 +74,36 @@ class UserController extends Controller
         return view('user.account')
                ->withCountries($countries);
     }
+    public function checkpassword(Request $request){
+        $data = $request->all();
+        $current_pasword = $data['current_password'];
+        $check_password = auth()->user();
+        if(Hash::check($current_pasword,$check_password->password)){
+            echo "true";die;
+        }else{
+            echo "false";
+            die;
+        }
+    }
+
+    public function updatepassword(Request $request){
+        $request->validate([
+            'password' => 'required',
+            'newpassword' => 'required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'required'
+        ]);
+        $data = $request->all();
+        $user = auth()->user();
+        $current_password = $data['password'];
+        if(Hash::check($current_password,$user->password)){
+            $password = bcrypt($data['newpassword']);
+           $user =$user->update(['password' => $password]);
+           
+            return redirect()->back()->with('success',"Password Successfully Updated");
+        }else{
+            return redirect()->back()->with('error',"Invalid Data");
+        }
+    }
    
 
     public function logout(){
