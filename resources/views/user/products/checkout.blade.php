@@ -16,45 +16,45 @@
                 <div class="">
                     <!--Billing form-->
                     <h2>Billing To</h2>
-                    <form action="{{ url('/account') }}" method="post" id="updateAccount">
+                    <form action="{{ url('/checkout') }}" method="post" id="updateAccount">
                         @csrf
+                         
                         <div class="form-group">
-                           <input class="form-control m-5" type="hidden" name="id" value="{{ auth()->user()->id }}">
-                        </div>  
-                        <div class="form-group">
-                            <input class="form-control m-5" type="text" name="name" id="name" placeholder="Billing Name" value="{{ auth()->user()->name }}" />
+                            <input class="form-control m-5" type="text" name="billing_name" id="billing_name" placeholder="Billing Name" value="{{ $user->name }}" />
                         </div>
                         <div class="form-group">
-                            <input class="form-control m-5" type="text" name="address" id="address" placeholder="Billing Address" />
+                            <input class="form-control m-5" type="text" name="billing_address" id="billing_address" placeholder="Billing Address" value="{{ $user->address ?? ''}}"/>
                         </div>
                         <div class="form-group">
-                            <input class="form-control m-5" type="text" name="city" id="city" placeholder="Billing City" />
+                            <input class="form-control m-5" type="text" name="billing_city" id="billing_city" placeholder="Billing City" value="{{ $user->city ?? ''}}"/>
                         </div>
                         <div class="form-group">
-                            <input class="form-control m-5" type="text" name="state" id="state" placeholder="Billing State" />
+                            <input class="form-control m-5" type="text" name="billing_state" id="billing_state" placeholder="Billing State" value="{{ $user->state ?? ''}}"/>
                         </div>
+                        
                         <div class="form-group">
-                            <select name="country" id="country" class="form-control m-5">
+                            <select name="billing_country" id="billing_country" class="form-control m-5">
                                 <option value="">Select Billing Country</option>
                                 @foreach($countries as $country)
-                                <option value="{{$country->country_name}}">{{ $country->country_name }}</option>
+                                
+                                <option value="{{$country->country_name}}" {{ $country->country_name == $user->country ? 'selected' : ''}}>{{ $country->country_name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <input class="form-control m-5" type="text" name="pincode" id="pincode" placeholder="Billing Pincode" />
+                            <input class="form-control m-5" type="text" name="billing_pincode" id="billing_pincode" placeholder="Billing Pincode" value="{{ $user->pincode ?? ''}}"/>
                         </div>
                         <div class="form-group">
-                            <input class="form-control m-5" type="text" name="mobile" id="mobile" placeholder="Billing Mobile" />
+                            <input class="form-control m-5" type="text" name="billing_mobile" id="billing_mobile" placeholder="Billing Mobile" value="{{ $user->mobile ?? ''}}"/>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="billtoship">
+                            <input class="form-check-input" type="checkbox" id="billtoship" name="billtoship">
                             <label class="form-check-label" for="defaultCheck1">
                                 Address same as Billing Address
                             </label>
                         </div>
-                    </form>
+                    
                 </div>
                 <!--/login form-->
             </div>
@@ -65,36 +65,33 @@
                 <div class="">
                     <!--sign up form-->
                     <h2>Shipping To</h2>
-                    <form action="{{ url('/update-user-password') }}" method="post">
-                    @csrf
+                    
+                       
                         <div class="form-group">
-                           <input class="form-control m-5" type="hidden" name="id" value="{{ auth()->user()->id }}">
-                        </div>  
-                        <div class="form-group">
-                            <input class="form-control m-5" type="text" name="name" id="name" placeholder="Shipping Name" value="{{ auth()->user()->name }}" />
+                            <input class="form-control m-5" type="text" name="shipping_name" value="{{ $shippingDetail->name }}" id="shipping_name" placeholder="Shipping Name" />
                         </div>
                         <div class="form-group">
-                            <input class="form-control m-5" type="text" name="address" id="address" placeholder="Shipping Address" />
+                            <input class="form-control m-5" type="text" name="shipping_address" value="{{ $shippingDetail->address }}" id="shipping_address" placeholder="Shipping Address" />
                         </div>
                         <div class="form-group">
-                            <input class="form-control m-5" type="text" name="city" id="city" placeholder="Shipping City" />
+                            <input class="form-control m-5" type="text" name="shipping_city" id="shipping_city" value="{{ $shippingDetail->city }}" placeholder="Shipping City" />
                         </div>
                         <div class="form-group">
-                            <input class="form-control m-5" type="text" name="state" id="state" placeholder="Shipping State" />
+                            <input class="form-control m-5" type="text" name="shipping_state" id="shipping_state" value="{{ $shippingDetail->state }}" placeholder="Shipping State" />
                         </div>
                         <div class="form-group">
-                            <select name="country" id="country" class="form-control m-5">
+                            <select name="shipping_country" id="shipping_country" class="form-control m-5">
                                 <option value="">Select Shipping Country</option>
                                 @foreach($countries as $country)
-                                <option value="{{$country->country_name}}">{{ $country->country_name }}</option>
+                                <option value="{{$country->country_name}}" {{ $shippingDetail->country == $country->country_name ? 'selected' :'' }} >{{ $country->country_name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <input class="form-control m-5" type="text" name="pincode" id="pincode" placeholder="Shipping Pincode" />
+                            <input class="form-control m-5" type="text" name="shipping_pincode"  value="{{ $shippingDetail->pincode }}"id="shipping_pincode" placeholder="Shipping Pincode" />
                         </div>
                         <div class="form-group">
-                            <input class="form-control m-5" type="text" name="mobile" id="mobile" placeholder="Shipping Mobile" />
+                            <input class="form-control m-5" type="text" name="shipping_mobile" value="{{ $shippingDetail->mobile }}" id="shipping_mobile" placeholder="Shipping Mobile" />
                         </div>
 
                         <button type="submit" class="btn btn-secondary">checkout</button> 
@@ -113,7 +110,26 @@
 @section('script')
 <script>
     $(document).ready(function($) {
-
+        $('#billtoship').click(function(){
+           if(this.checked){
+            $('#shipping_name').val($('#billing_name').val())
+            $('#shipping_address').val($('#billing_address').val())
+            $('#shipping_city').val($('#billing_city').val())
+            $('#shipping_state').val($('#billing_state').val())
+            $('#shipping_pincode').val($('#billing_pincode').val())
+            $('#shipping_mobile').val($('#billing_mobile').val())
+            $('#shipping_country').val($('#billing_country').val())
+           }
+           else {
+            $('#shipping_name').val('')
+            $('#shipping_address').val('')
+            $('#shipping_city').val('')
+            $('#shipping_state').val('')
+            $('#shipping_pincode').val('')
+            $('#shipping_mobile').val('')
+            $('#shipping_country').val('')
+           }
+        })
     })
 </script>
 
