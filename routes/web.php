@@ -29,6 +29,9 @@ Route::group(['middleware'=> ['frontlogin']] ,function(){
     Route::post('/update-user-password','UserController@updatepassword');
     Route::get('/user-checkPassword','UserController@checkpassword');
     Route::match(['GET','POST'],'/checkout','CheckoutController@checkout');
+    Route::match(['GET','POST'],'/order-review','IndexController@orderReview');
+    Route::match(['GET','POST'],'/place-order','IndexController@placeOrder');
+
 });
 
 Route::match(['GET','POST'],'/login-register','UserController@register');

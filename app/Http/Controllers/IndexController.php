@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 use App\Coupon;
+use App\Delivery_address;
 use App\ProductAttribute;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
@@ -214,9 +215,23 @@ class IndexController extends Controller
    }
   }
 
-  // public function deleteCoupon(){
+  public function orderReview(Request $request){
+    $user = auth()->user();
 
-  // }
+    $shippingDetail = Delivery_address::where('user_id',$user->id)->first();
+    $session_id = Session::get('session_id');
+    $carts = Cart::where(['session_id' => $session_id])->get();
+
+    return view('user.products.order_review')
+           ->withUser($user)
+           ->withShippingDetail($shippingDetail)
+           ->withCarts($carts);
+  }
+  public function placeOrder(Request $request){
+    if($request->isMethod('post')){
+      dd( $request->all());
+    }
+  }
 }
 
 

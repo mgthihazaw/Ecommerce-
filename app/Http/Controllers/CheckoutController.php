@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Country;
 use App\Delivery_address;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
@@ -16,6 +18,11 @@ class CheckoutController extends Controller
         if($shippingCount>0){
             $shippingDetail = Delivery_address::where('user_id',$user->id)->first();
         }
+
+        //update cart table with user email
+
+        $session_id = Session::get('session_id');
+        Cart::where(['session_id' => $session_id])->update(['user_email' => $user->email]);
 
         if($request->isMethod('post')){
             $request->validate([
@@ -70,7 +77,7 @@ class CheckoutController extends Controller
                 ]);
             }
             
-            return redirect()->back();
+            return redirect()->action('IndexController@orderReview');
         }
 
         

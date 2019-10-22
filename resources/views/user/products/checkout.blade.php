@@ -94,7 +94,7 @@
                             <input class="form-control m-5" type="text" name="shipping_mobile" value="{{ $shippingDetail->mobile }}" id="shipping_mobile" placeholder="Shipping Mobile" />
                         </div>
 
-                        <button type="submit" class="btn btn-secondary">checkout</button> 
+                        <button type="submit" class="btn btn-secondary ">checkout</button> 
                     </form>
                 </div>
                 <!--/sign up form-->
